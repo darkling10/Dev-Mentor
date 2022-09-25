@@ -4,20 +4,20 @@ const jwt = require("jsonwebtoken");
 
 const CoursesSchema = new mongoose.Schema(
     {
-        name: {
+        title: {
             type: String,
             required: true,
         },
-        email: {
+        category: {
             type: String,
             required: true,
         },
-        password: {
+        linkToCourse: {
             type: String,
             required: true,
         },
-        preference: {
-            type: [String],
+        language: {
+            type: String,
             required: true,
         },
         userType: {
@@ -25,41 +25,56 @@ const CoursesSchema = new mongoose.Schema(
             enum: ["admin", "user"],
             default: "admin",
         },
-        // tokens: [
-        //   {
-        //     token: {
-        //       type: String,
-        //       required: true,
-        //     },
-        //   },
-        // ],
+        platform: {
+            type: String,
+            required: true,
+        },
+        price: {
+            type: Number,
+            required: true,
+        },
+        description: {
+            type: String,
+            required:true,
+        },
+        pros: {
+            type: [String],
+            required:true,
+        },
+        cons: {
+            type: [String],
+            required:true,
+        },
+        likes: {
+            type: Number,
+            required:true
+        },
+        disLikes: {
+            type: Number,
+            required:true
+        },
+        Comments: {
+            userName: {
+                type: String,
+                required:true
+            },
+            userId: {
+                type: Number,
+                required:true
+            },
+            profile: {
+                type: String,
+                required:true
+            },
+            Comment: {
+                type: String,
+                required:true
+            }
+        }
     },
     {
         timestamps: true,
     }
 );
-
-// UserSchema.pre("save", function (next) {
-//   var salt = bcrypt.genSaltSync(10);
-//   if (this.password && this.isModified("password")) {
-//     this.password = bcrypt.hashSync(this.password, salt);
-//   }
-//   next();
-// });
-
-// UserSchema.methods.getAuthToken = async function (data) {
-//   let params = {
-//     id: this.id,
-//     email: this.email,
-//     name: this.name,
-//     userType : this.userType
-//   };
-//   var tokenValue = jwt.sign(params, process.env.JWTSECRETKEY, {
-//     expiresIn: "300000s",
-//   });
-//   this.tokens = this.tokens.concat({ token: tokenValue });
-//   await this.save();
-//   return tokenValue;
-// };
 
 module.exports = Courses = mongoose.model("Courses", CoursesSchema);
